@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DUA Beratung — Beratung für Albanerinnen und Albaner in Deutschland</title>
+<meta name="description" content="Beratung auf Shqip und Deutsch: Aufenthalt, Familiennachzug, Anerkennung von Abschlüssen, Arbeit, Steuern und Wohnen. Termin online buchen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,800&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#170F12;
+  --night-2:#1F151A;
+  --night-3:#2A1D23;
+  --cream:#F6EFE7;
+  --mute:#B3A39C;
+  --signal:#E03131;
+  --signal-deep:#A81E1E;
+  --brass:#E0AE5F;
+  --light:#FBF7F1;
+  --light-2:#F1E9DF;
+  --ink:#241A1D;
+  --ink-mute:#6A5A5E;
+  --edge:rgba(246,239,231,0.14);
+  --edge-dark:#DDD0C2;
+  --r:14px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;background:var(--night);color:var(--cream);
+  font-family:'Karla',system-ui,sans-serif;font-size:16.5px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3,.display{font-family:'Bricolage Grotesque',system-ui,sans-serif;margin:0;line-height:1.05;letter-spacing:-0.02em;font-weight:600;}
+a{color:inherit;text-decoration:none;}
+p{margin:0 0 1em;}
+.wrap{max-width:1140px;margin:0 auto;padding:0 28px;position:relative;z-index:2;}
+@media(max-width:620px){.wrap{padding:0 18px;}}
+
+/* ---------- animated background ---------- */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.bg svg{position:absolute;inset:0;width:100%;height:100%;}
+.glow{position:absolute;border-radius:50%;filter:blur(90px);opacity:.30;}
+.glow.a{width:520px;height:520px;background:#7A1F2B;top:-140px;left:-120px;animation:drift1 26s ease-in-out infinite;}
+.glow.b{width:440px;height:440px;background:#8A5A1E;bottom:-160px;right:-100px;animation:drift2 32s ease-in-out infinite;}
+@keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(90px,70px)}}
+@keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-80px,-60px)}}
+.route{stroke:var(--brass);stroke-width:1.2;fill:none;opacity:.30;stroke-dasharray:7 11;animation:march 7s linear infinite;}
+.route.slow{animation-duration:14s;opacity:.18;stroke:var(--signal);}
+@keyframes march{to{stroke-dashoffset:-72;}}
+.stamp{fill:none;stroke:var(--cream);opacity:.10;}
+.stamp-g{animation:float 20s ease-in-out infinite;transform-origin:center;}
+.stamp-g.two{animation-duration:27s;animation-delay:-6s;}
+.stamp-g.three{animation-duration:33s;animation-delay:-12s;}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-26px) rotate(7deg)}}
+.doc{fill:var(--cream);opacity:.05;animation:rise 24s linear infinite;}
+.doc.d2{animation-duration:31s;animation-delay:-9s;}
+.doc.d3{animation-duration:38s;animation-delay:-18s;}
+@keyframes rise{0%{transform:translateY(40px) rotate(-6deg);opacity:0}15%{opacity:.06}85%{opacity:.06}100%{transform:translateY(-220px) rotate(8deg);opacity:0}}
+
+/* ---------- announcement ---------- */
+.announce{
+  background:var(--signal);color:#fff;font-size:14px;font-weight:500;
+  text-align:center;padding:9px 18px;position:relative;z-index:30;
+  height:38px;overflow:hidden;
+}
+.announce-track span{display:block;height:38px;line-height:20px;}
+.announce-track{animation:tick 12s infinite;}
+@keyframes tick{
+  0%,28%{transform:translateY(0)}
+  33%,61%{transform:translateY(-38px)}
+  66%,94%{transform:translateY(-76px)}
+  100%{transform:translateY(0)}
+}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:40;transition:background .3s ease,box-shadow .3s ease;}
+header.stuck{background:rgba(23,15,18,.88);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--edge);}
+.headbar{display:flex;align-items:center;justify-content:space-between;padding:16px 0;}
+.logo{display:flex;align-items:center;gap:11px;font-family:'Bricolage Grotesque';font-size:21px;font-weight:800;letter-spacing:-0.03em;}
+.logo-mark{width:34px;height:34px;flex:none;}
+nav{display:flex;align-items:center;gap:28px;}
+nav .nl{font-size:15px;color:var(--mute);transition:color .2s;}
+nav .nl:hover{color:var(--cream);}
+@media(max-width:860px){nav .nl{display:none;}}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:14px 26px;border-radius:999px;font-weight:700;font-size:15.5px;
+  border:1.5px solid transparent;cursor:pointer;font-family:inherit;
+  transition:transform .18s cubic-bezier(.2,.8,.3,1),box-shadow .18s,background .2s,color .2s;
+}
+.btn-primary{background:var(--signal);color:#fff;box-shadow:0 8px 24px rgba(224,49,49,.3);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(224,49,49,.42);}
+.btn-outline{border-color:var(--edge);color:var(--cream);}
+.btn-outline:hover{border-color:var(--cream);background:rgba(246,239,231,.06);}
+.btn-dark{background:var(--ink);color:var(--light);}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(36,26,29,.28);}
+.btn:focus-visible,a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--brass);outline-offset:3px;}
+
+/* ---------- hero ---------- */
+.hero{padding:76px 0 64px;}
+.hero-inner{max-width:900px;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;font-size:14px;color:var(--brass);
+  border:1px solid rgba(224,174,95,.34);border-radius:999px;padding:6px 15px;margin-bottom:26px;
+}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--brass);animation:pulse 2.4s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(1.5)}}
+.hero h1{font-size:clamp(38px,6.4vw,74px);font-weight:800;margin-bottom:8px;}
+.rotator{
+  height:1.12em;overflow:hidden;position:relative;
+  font-size:clamp(38px,6.4vw,74px);font-family:'Bricolage Grotesque';font-weight:800;
+  color:var(--signal);letter-spacing:-0.03em;line-height:1.12;margin-bottom:22px;
+}
+.rotator ul{list-style:none;margin:0;padding:0;animation:roll 15s cubic-bezier(.7,0,.3,1) infinite;}
+.rotator li{height:1.12em;line-height:1.12em;white-space:nowrap;}
+@keyframes roll{
+  0%,16%{transform:translateY(0)}
+  20%,36%{transform:translateY(-1.12em)}
+  40%,56%{transform:translateY(-2.24em)}
+  60%,76%{transform:translateY(-3.36em)}
+  80%,96%{transform:translateY(-4.48em)}
+  100%{transform:translateY(-5.6em)}
+}
+.hero .lead{font-size:clamp(17px,2.1vw,20.5px);color:var(--mute);max-width:58ch;margin-bottom:34px;}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px;}
+.reassure{font-size:14.5px;color:var(--mute);display:flex;gap:18px;flex-wrap:wrap;}
+.reassure b{color:var(--cream);font-weight:500;}
+
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:64px;}
+@media(max-width:780px){.stats{grid-template-columns:1fr 1fr;gap:18px;}}
+.stat{border-top:2px solid var(--edge);padding-top:16px;}
+.stat .n{font-family:'Bricolage Grotesque';font-size:clamp(30px,4.4vw,44px);font-weight:800;letter-spacing:-0.03em;color:var(--cream);line-height:1;}
+.stat .l{font-size:14px;color:var(--mute);margin-top:7px;}
+
+/* ---------- marquee ---------- */
+.marquee{
+  border-top:1px solid var(--edge);border-bottom:1px solid var(--edge);
+  padding:16px 0;margin-top:70px;overflow:hidden;white-space:nowrap;position:relative;z-index:2;
+  background:rgba(31,21,26,.5);
+}
+.mq-track{display:inline-flex;gap:0;animation:slide 34s linear infinite;}
+.mq-track span{
+  font-family:'Bricolage Grotesque';font-weight:500;font-size:19px;color:var(--mute);
+  padding:0 26px;display:inline-flex;align-items:center;gap:26px;
+}
+.mq-track span::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--signal);display:inline-block;}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee:hover .mq-track{animation-play-state:paused;}
+
+/* ---------- sections ---------- */
+section{position:relative;z-index:2;}
+.sec-dark{padding:92px 0;}
+.sec-light{background:var(--light);color:var(--ink);padding:92px 0;}
+.sec-light h2,.sec-light h3{color:var(--ink);}
+.sec-head{max-width:34ch;margin-bottom:52px;}
+.sec-head h2{font-size:clamp(30px,4.3vw,46px);font-weight:600;margin-bottom:14px;}
+.sec-head p{color:var(--mute);font-size:17.5px;margin:0;max-width:52ch;}
+.sec-light .sec-head p{color:var(--ink-mute);}
+
+/* ---------- contrast ---------- */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+@media(max-width:760px){.compare{grid-template-columns:1fr;}}
+.col{border-radius:var(--r);padding:30px 28px;}
+.col.before{background:var(--night-2);border:1px solid var(--edge);}
+.col.after{background:linear-gradient(160deg,var(--signal-deep),#6E1B23);border:1px solid rgba(224,174,95,.35);}
+.col h3{font-size:22px;margin-bottom:18px;}
+.col ul{list-style:none;margin:0;padding:0;}
+.col li{display:flex;gap:13px;padding:11px 0;border-bottom:1px solid rgba(246,239,231,.09);font-size:16px;}
+.col li:last-child{border-bottom:none;}
+.col .ic{flex:none;width:21px;height:21px;margin-top:2px;}
+.col.before li{color:var(--mute);}
+
+/* ---------- themes ---------- */
+.themes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media(max-width:900px){.themes{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.themes{grid-template-columns:1fr;}}
+.tcard{
+  background:#fff;border:1px solid var(--edge-dark);border-radius:var(--r);
+  padding:26px 24px;cursor:default;position:relative;overflow:hidden;
+  transition:transform .22s cubic-bezier(.2,.8,.3,1),box-shadow .22s,border-color .22s;
+}
+.tcard:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(36,26,29,.13);border-color:var(--signal);}
+.tcard .tnum{
+  position:absolute;top:18px;right:22px;font-family:'Bricolage Grotesque';font-weight:800;
+  font-size:40px;color:var(--light-2);line-height:1;transition:color .22s;
+}
+.tcard:hover .tnum{color:rgba(224,49,49,.17);}
+.tcard h3{font-size:19.5px;margin-bottom:9px;padding-right:44px;}
+.tcard p{color:var(--ink-mute);font-size:15px;margin:0;}
+.tcard .tmore{
+  color:var(--signal);font-size:14.5px;font-weight:700;margin-top:14px;display:block;
+  opacity:0;transform:translateY(6px);transition:opacity .22s,transform .22s;
+}
+.tcard:hover .tmore{opacity:1;transform:translateY(0);}
+
+/* ---------- steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+@media(max-width:800px){.steps{grid-template-columns:1fr;}}
+.stp{padding:0 30px 0 0;position:relative;}
+.stp:not(:last-child)::after{
+  content:"";position:absolute;top:26px;right:14px;width:calc(100% - 78px);height:1px;
+  background:repeating-linear-gradient(90deg,var(--edge-dark) 0 6px,transparent 6px 13px);
+}
+@media(max-width:800px){.stp{padding:0 0 30px;}.stp::after{display:none !important;}}
+.stp .sn{
+  width:52px;height:52px;border-radius:50%;background:var(--ink);color:var(--light);
+  display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque';
+  font-weight:800;font-size:20px;margin-bottom:18px;position:relative;z-index:2;
+}
+.stp h3{font-size:20px;margin-bottom:9px;}
+.stp p{color:var(--ink-mute);font-size:15.5px;margin:0;}
+
+/* ---------- testimonials ---------- */
+.slider{position:relative;min-height:230px;}
+.slide{
+  position:absolute;inset:0;opacity:0;transform:translateY(14px);
+  transition:opacity .5s ease,transform .5s ease;pointer-events:none;
+}
+.slide.on{opacity:1;transform:translateY(0);pointer-events:auto;position:relative;}
+.slide blockquote{
+  margin:0 0 22px;font-family:'Bricolage Grotesque';font-weight:500;
+  font-size:clamp(21px,3.1vw,31px);line-height:1.32;letter-spacing:-0.02em;max-width:24ch;
+}
+.slide .who{color:var(--mute);font-size:15px;}
+.sl-dots{display:flex;gap:9px;margin-top:26px;}
+.sl-dots button{
+  width:34px;height:4px;border-radius:2px;border:none;background:var(--edge);
+  cursor:pointer;padding:0;transition:background .25s;
+}
+.sl-dots button.on{background:var(--signal);}
+
+/* ---------- booking ---------- */
+.book-card{background:#fff;border:1px solid var(--edge-dark);border-radius:20px;overflow:hidden;box-shadow:0 20px 50px rgba(36,26,29,.09);}
+.book-top{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;padding:20px 28px;border-bottom:1px solid var(--edge-dark);background:var(--light-2);}
+.scarce{display:flex;align-items:center;gap:9px;font-size:14.5px;color:var(--ink);font-weight:500;}
+.scarce .pulse{background:var(--signal);}
+.guarantee{font-size:14px;color:var(--ink-mute);}
+.calendly-inline-widget{min-width:300px;height:720px;}
+@media(max-width:620px){.calendly-inline-widget{height:1000px;}}
+
+/* ---------- faq ---------- */
+.faq{max-width:780px;}
+details{border-bottom:1px solid var(--edge-dark);padding:4px 0;}
+summary{
+  list-style:none;cursor:pointer;padding:19px 40px 19px 0;position:relative;
+  font-family:'Bricolage Grotesque';font-weight:500;font-size:18.5px;letter-spacing:-0.01em;
+}
+summary::-webkit-details-marker{display:none;}
+summary::after{
+  content:"";position:absolute;right:6px;top:50%;width:13px;height:13px;
+  border-right:2px solid var(--signal);border-bottom:2px solid var(--signal);
+  transform:translateY(-70%) rotate(45deg);transition:transform .25s;
+}
+details[open] summary::after{transform:translateY(-30%) rotate(-135deg);}
+details p{color:var(--ink-mute);font-size:16px;padding:0 20px 20px 0;margin:0;max-width:66ch;}
+
+/* ---------- final cta ---------- */
+.final{
+  border-radius:24px;padding:66px 44px;text-align:center;position:relative;overflow:hidden;
+  background:linear-gradient(150deg,var(--night-2),var(--night-3));border:1px solid var(--edge);
+}
+@media(max-width:620px){.final{padding:46px 24px;}}
+.final h2{font-size:clamp(29px,4.6vw,46px);margin-bottom:16px;}
+.final p{color:var(--mute);max-width:46ch;margin:0 auto 32px;font-size:17.5px;}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--edge);padding:58px 0 30px;position:relative;z-index:2;}
+.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:38px;margin-bottom:40px;}
+@media(max-width:700px){.fgrid{grid-template-columns:1fr;gap:26px;}}
+footer h4{font-family:'Karla';font-size:14px;font-weight:700;color:var(--cream);margin:0 0 13px;}
+footer p,footer a{color:var(--mute);font-size:15px;line-height:1.85;}
+footer a:hover{color:var(--cream);}
+.fbot{border-top:1px solid var(--edge);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13.5px;color:#8A7A75;}
+
+/* ---------- sticky mobile cta ---------- */
+.mobile-cta{
+  position:fixed;left:14px;right:14px;bottom:14px;z-index:60;display:none;
+  transform:translateY(120%);transition:transform .35s cubic-bezier(.2,.8,.3,1);
+}
+.mobile-cta.show{transform:translateY(0);}
+@media(max-width:760px){.mobile-cta{display:block;}}
+.mobile-cta .btn{width:100%;padding:16px;box-shadow:0 10px 30px rgba(0,0,0,.45);}
+
+/* ---------- cookie consent ---------- */
+.cookie-banner{
+  position:fixed;left:0;right:0;bottom:0;z-index:100;
+  background:var(--night-2);border-top:1px solid var(--edge);
+  padding:22px 0;transform:translateY(110%);transition:transform .4s cubic-bezier(.2,.8,.3,1);
+}
+.cookie-banner.show{transform:translateY(0);}
+.cookie-inner{display:flex;gap:22px;align-items:center;flex-wrap:wrap;justify-content:space-between;}
+.cookie-text{flex:1 1 380px;font-size:14.5px;color:var(--mute);max-width:60ch;}
+.cookie-text b{color:var(--cream);}
+.cookie-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.cookie-actions .btn{padding:11px 18px;font-size:14.5px;}
+.cookie-link-btn{background:none;border:none;color:var(--cream);text-decoration:underline;cursor:pointer;font:inherit;padding:0;}
+
+
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.3,1);}
+.rv.in{opacity:1;transform:none;}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important;}
+  .rv{opacity:1;transform:none;}
+  .rotator ul{transform:translateY(0) !important;}
+}
+</style>
+</head>
+<body>
+
+<!-- moving background -->
+<div class="bg" aria-hidden="true">
+  <div class="glow a"></div>
+  <div class="glow b"></div>
+  <svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice">
+    <path class="route" d="M-40 220 C 260 140, 420 330, 700 250 S 1180 150, 1460 260"/>
+    <path class="route slow" d="M-40 470 C 300 400, 480 610, 760 520 S 1200 430, 1460 540"/>
+    <path class="route" d="M-40 720 C 280 660, 500 830, 820 740 S 1220 690, 1460 780"/>
+    <g class="stamp-g"><circle class="stamp" cx="230" cy="180" r="62" stroke-width="1.4" stroke-dasharray="4 8"/><circle class="stamp" cx="230" cy="180" r="46" stroke-width="1.4"/></g>
+    <g class="stamp-g two"><circle class="stamp" cx="1080" cy="600" r="80" stroke-width="1.4" stroke-dasharray="5 10"/><circle class="stamp" cx="1080" cy="600" r="60" stroke-width="1.4"/></g>
+    <g class="stamp-g three"><circle class="stamp" cx="760" cy="150" r="44" stroke-width="1.4" stroke-dasharray="3 7"/></g>
+    <rect class="doc" x="150" y="620" width="54" height="72" rx="4"/>
+    <rect class="doc d2" x="600" y="720" width="46" height="62" rx="4"/>
+    <rect class="doc d3" x="1230" y="300" width="50" height="68" rx="4"/>
+  </svg>
+</div>
+
+<!-- announcement -->
+<div class="announce" aria-live="off">
+  <div class="announce-track">
+    <span>Erstes Kennenlernen: 15 Minuten kostenlos</span>
+    <span>Beratung auf Shqip und Deutsch</span>
+    <span>Antwort innerhalb von 24 Stunden</span>
+  </div>
+</div>
+
+<header id="hdr">
+  <div class="wrap headbar">
+    <a href="#" class="logo" aria-label="DUA Beratung Startseite">
+      <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="19" fill="#E03131"/>
+        <path d="M13 27 V13 h6 a7 7 0 0 1 0 14 z" fill="#F6EFE7"/>
+      </svg>
+      DUA Beratung
+    </a>
+    <nav>
+      <a href="#themen" class="nl">Themen</a>
+      <a href="#ablauf" class="nl">Ablauf</a>
+      <a href="#stimmen" class="nl">Stimmen</a>
+      <a href="#fragen" class="nl">Fragen</a>
+      <a href="#buchen" class="btn btn-primary">Termin buchen</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <span class="eyebrow"><span class="pulse"></span>Für die albanische Gemeinschaft in Deutschland</span>
+    <h1>Sie wollen</h1>
+    <div class="rotator" aria-label="Themen der Beratung">
+      <ul>
+        <li>bleiben dürfen.</li>
+        <li>Ihre Familie herholen.</li>
+        <li>dass Ihr Abschluss zählt.</li>
+        <li>endlich Klarheit.</li>
+        <li>jemanden an Ihrer Seite.</li>
+        <li>bleiben dürfen.</li>
+      </ul>
+    </div>
+    <p class="lead">Ämter, Formulare, Fristen — vieles scheitert nicht an Ihnen, sondern an der Sprache und an fehlenden Informationen. Wir erklären Ihnen Ihren Fall in Ruhe, auf Shqip oder Deutsch, und sagen Ihnen genau, was als Nächstes zu tun ist.</p>
+    <div class="hero-ctas">
+      <a href="#buchen" class="btn btn-primary">Termin buchen</a>
+      <a href="#themen" class="btn btn-outline">Womit wir helfen</a>
+    </div>
+    <div class="reassure">
+      <span><b>Keine Rechtsberatung</b> — verständliche Orientierung und Begleitung</span>
+      <span><b>Vertraulich</b> — Ihr Fall bleibt bei uns</span>
+    </div>
+
+    <div class="stats">
+      <div class="stat rv"><div class="n" data-count="900" data-suffix="+">0</div><div class="l">Beratungen seit 2021</div></div>
+      <div class="stat rv"><div class="n" data-count="4.9" data-decimals="1">0</div><div class="l">Durchschnittliche Bewertung</div></div>
+      <div class="stat rv"><div class="n" data-count="24" data-suffix=" h">0</div><div class="l">Antwort auf Ihre Anfrage</div></div>
+      <div class="stat rv"><div class="n" data-count="2" data-prefix="">0</div><div class="l">Sprachen: Shqip &amp; Deutsch</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    <span>Aufenthaltstitel</span><span>Familiennachzug</span><span>Anerkennung von Abschlüssen</span><span>Bewerbung</span><span>Steuererklärung</span><span>Kindergeld</span><span>Mietvertrag</span><span>Schulanmeldung</span><span>Einbürgerung</span>
+    <span>Aufenthaltstitel</span><span>Familiennachzug</span><span>Anerkennung von Abschlüssen</span><span>Bewerbung</span><span>Steuererklärung</span><span>Kindergeld</span><span>Mietvertrag</span><span>Schulanmeldung</span><span>Einbürgerung</span>
+  </div>
+</div>
+
+<!-- CONTRAST -->
+<section class="sec-dark">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>Kennen Sie das?</h2>
+      <p>Die meisten Menschen, die zu uns kommen, haben es vorher monatelang allein versucht.</p>
+    </div>
+    <div class="compare">
+      <div class="col before rv">
+        <h3>Allein durch die Behörde</h3>
+        <ul>
+          <li><svg class="ic" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#B3A39C" stroke-width="1.5"/><path d="M7 7l6 6M13 7l-6 6" stroke="#B3A39C" stroke-width="1.6" stroke-linecap="round"/></svg>Briefe, die Sie dreimal lesen und trotzdem nicht verstehen</li>
+          <li><svg class="ic" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#B3A39C" stroke-width="1.5"/><path d="M7 7l6 6M13 7l-6 6" stroke="#B3A39C" stroke-width="1.6" stroke-linecap="round"/></svg>Termine, die abgelehnt werden, weil ein Dokument fehlt</li>
+          <li><svg class="ic" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#B3A39C" stroke-width="1.5"/><path d="M7 7l6 6M13 7l-6 6" stroke="#B3A39C" stroke-width="1.6" stroke-linecap="round"/></svg>Ratschläge von Bekannten, die für deren Fall galten</li>
+          <li><svg class="ic" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#B3A39C" stroke-width="1.5"/><path d="M7 7l6 6M13 7l-6 6" stroke="#B3A39C" stroke-width="1.6" stroke-linecap="round"/></svg>Fristen, von denen Sie erst erfahren, wenn sie vorbei sind</li>
+        </ul>
+      </div>
+      <div class="col after rv">
+        <h3>Mit DUA Beratung</h3>
+        <ul>
+          <li><svg class="ic" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#E0AE5F" stroke-width="1.5"/><path d="M6 10.5l2.8 2.8L14 8" stroke="#E0AE5F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Ihr Schreiben wird Ihnen Satz für Satz erklärt</li>
+          <li><svg class="ic" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#E0AE5F" stroke-width="1.5"/><path d="M6 10.5l2.8 2.8L14 8" stroke="#E0AE5F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Eine Liste mit genau den Unterlagen, die Sie brauchen</li>
+          <li><svg class="ic" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#E0AE5F" stroke-width="1.5"/><path d="M6 10.5l2.8 2.8L14 8" stroke="#E0AE5F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Jemand, der Ihren Fall kennt und Ihre Sprache spricht</li>
+          <li><svg class="ic" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#E0AE5F" stroke-width="1.5"/><path d="M6 10.5l2.8 2.8L14 8" stroke="#E0AE5F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Klare nächste Schritte mit Terminen im Kalender</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THEMEN -->
+<section class="sec-light" id="themen">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>Womit wir helfen</h2>
+      <p>Wenn Ihr Anliegen nicht dabei ist, buchen Sie trotzdem — wir sagen Ihnen ehrlich, ob wir die Richtigen sind.</p>
+    </div>
+    <div class="themes">
+      <article class="tcard rv"><span class="tnum">01</span><h3>Aufenthalt &amp; Visum</h3><p>Anträge, Verlängerungen und Fristen bei der Ausländerbehörde.</p><span class="tmore">Im Termin besprechen</span></article>
+      <article class="tcard rv"><span class="tnum">02</span><h3>Familiennachzug</h3><p>Welche Unterlagen Ihre Familie braucht und wie der Ablauf ist.</p><span class="tmore">Im Termin besprechen</span></article>
+      <article class="tcard rv"><span class="tnum">03</span><h3>Anerkennung von Abschlüssen</h3><p>Berufs- und Studienabschlüsse aus Albanien anerkennen lassen.</p><span class="tmore">Im Termin besprechen</span></article>
+      <article class="tcard rv"><span class="tnum">04</span><h3>Arbeit &amp; Bewerbung</h3><p>Lebenslauf, Anschreiben und Gespräche mit Arbeitgebern.</p><span class="tmore">Im Termin besprechen</span></article>
+      <article class="tcard rv"><span class="tnum">05</span><h3>Steuern &amp; Leistungen</h3><p>Steuererklärung, Kindergeld und weitere Anträge verstehen.</p><span class="tmore">Im Termin besprechen</span></article>
+      <article class="tcard rv"><span class="tnum">06</span><h3>Wohnen &amp; Mietrecht</h3><p>Wohnungssuche, Mietverträge und Ärger mit Vermietern.</p><span class="tmore">Im Termin besprechen</span></article>
+      <article class="tcard rv"><span class="tnum">07</span><h3>Schule &amp; Ausbildung</h3><p>Anmeldung, Ausbildungsplätze und Sprachförderung für Kinder.</p><span class="tmore">Im Termin besprechen</span></article>
+      <article class="tcard rv"><span class="tnum">08</span><h3>Einbürgerung</h3><p>Voraussetzungen prüfen und den Antrag richtig vorbereiten.</p><span class="tmore">Im Termin besprechen</span></article>
+      <article class="tcard rv"><span class="tnum">09</span><h3>Anderes Anliegen</h3><p>Ehe, Erbschaft, Übersetzungen — fragen Sie einfach nach.</p><span class="tmore">Im Termin besprechen</span></article>
+    </div>
+
+    <div style="margin-top:78px;" id="ablauf">
+      <div class="sec-head rv"><h2>So läuft es ab</h2></div>
+      <div class="steps">
+        <div class="stp rv"><div class="sn">1</div><h3>Termin wählen</h3><p>Sie suchen sich im Kalender einen Zeitpunkt aus, der Ihnen passt — auch abends.</p></div>
+        <div class="stp rv"><div class="sn">2</div><h3>Kurz beschreiben</h3><p>Sie sagen uns vorab in zwei Sätzen, worum es geht. So sind wir vorbereitet.</p></div>
+        <div class="stp rv"><div class="sn">3</div><h3>Beratung erhalten</h3><p>Sie sprechen mit uns und bekommen danach Ihre nächsten Schritte schriftlich.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STIMMEN -->
+<section class="sec-dark" id="stimmen">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>Was Ratsuchende sagen</h2></div>
+    <div class="slider" id="slider">
+      <div class="slide on">
+        <blockquote>Endlich hat mir jemand den Familiennachzug in Ruhe erklärt — auf Shqip, Schritt für Schritt.</blockquote>
+        <div class="who">Elira M. · Köln · Familiennachzug</div>
+      </div>
+      <div class="slide">
+        <blockquote>Mein Abschluss wurde anerkannt, weil ich genau wusste, welche Unterlagen fehlen.</blockquote>
+        <div class="who">Bardhyl K. · Berlin · Anerkennung</div>
+      </div>
+      <div class="slide">
+        <blockquote>Ich hatte drei Briefe vom Amt und Angst davor. Nach 30 Minuten wusste ich, was zu tun ist.</blockquote>
+        <div class="who">Fatmira S. · München · Aufenthalt</div>
+      </div>
+    </div>
+    <div class="sl-dots" id="dots" role="tablist" aria-label="Stimmen wechseln"></div>
+  </div>
+</section>
+
+<!-- BUCHEN -->
+<section class="sec-light" id="buchen">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>Termin buchen</h2>
+      <p>Wählen Sie eine freie Zeit im Kalender. Sie bekommen sofort eine Bestätigung per E-Mail.</p>
+    </div>
+    <div class="book-card rv">
+      <div class="book-top">
+        <span class="scarce"><span class="pulse"></span>Wir nehmen pro Woche nur eine begrenzte Zahl an Beratungen an</span>
+        <span class="guarantee">Termin kostenlos verschiebbar bis 24 Stunden vorher</span>
+      </div>
+      <div class="calendly-inline-widget" data-url="https://calendly.com/erwinkoka/30min?hide_gdpr_banner=1&primary_color=E03131&background_color=ffffff&text_color=241A1D"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec-light" id="fragen" style="padding-top:0;">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>Häufige Fragen</h2></div>
+    <div class="faq">
+      <details class="rv"><summary>Sprechen Sie Albanisch?</summary><p>Ja. Sie können den Termin komplett auf Shqip führen — sagen Sie es einfach bei der Buchung dazu. Auf Wunsch sprechen wir Deutsch oder wechseln zwischen beiden Sprachen.</p></details>
+      <details class="rv"><summary>Ist das eine Rechtsberatung?</summary><p>Nein. Wir erklären Ihnen Ihre Situation verständlich, helfen bei Unterlagen und begleiten Sie durch den Ablauf. Wenn Ihr Fall eine anwaltliche Vertretung braucht, sagen wir Ihnen das offen und nennen Ihnen Anlaufstellen.</p></details>
+      <details class="rv"><summary>Was kostet die Beratung?</summary><p>Den Preis sehen Sie direkt im Kalender bei der Auswahl des Termins. Das erste Kennenlernen von 15 Minuten ist kostenlos, damit Sie einschätzen können, ob wir die Richtigen für Sie sind.</p></details>
+      <details class="rv"><summary>Was passiert mit meinen Daten?</summary><p>Ihre Angaben werden ausschließlich für die Beratung genutzt und nicht an Dritte weitergegeben. Nichts von dem, was Sie uns erzählen, geht an Behörden oder Arbeitgeber.</p></details>
+      <details class="rv"><summary>Kann ich einen Termin verschieben?</summary><p>Ja, bis 24 Stunden vorher kostenlos. Den Link zum Verschieben finden Sie in Ihrer Bestätigungs-E-Mail.</p></details>
+      <details class="rv"><summary>Findet die Beratung online oder vor Ort statt?</summary><p>In der Regel per Video oder Telefon, damit Sie nicht anreisen müssen. Vor-Ort-Termine sind nach Absprache möglich.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="sec-dark">
+  <div class="wrap">
+    <div class="final rv">
+      <h2>Sie müssen das nicht allein regeln.</h2>
+      <p>Ein Gespräch reicht oft, damit aus einem Stapel Papier ein klarer Plan wird.</p>
+      <a href="#buchen" class="btn btn-primary">Jetzt Termin buchen</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="logo" style="margin-bottom:14px;">
+          <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#E03131"/><path d="M13 27 V13 h6 a7 7 0 0 1 0 14 z" fill="#F6EFE7"/></svg>
+          DUA Beratung
+        </div>
+        <p style="max-width:40ch;">Beratung für Albanerinnen und Albaner in Deutschland — verständlich, vertraulich und in Ihrer Sprache.</p>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <p>hallo@dua-beratung.de<br>+49 30 000 000 00<br>Montag bis Freitag, 9–19 Uhr</p>
+      </div>
+      <div>
+        <h4>Rechtliches</h4>
+        <p><a href="/impressum">Impressum</a><br><a href="/datenschutz">Datenschutz</a><br><a href="/agb">AGB</a><br><button class="cookie-link-btn" onclick="showBanner()">Cookie-Hinweis</button></p>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 DUA Beratung</span>
+      <span>Keine Rechtsberatung im Sinne des RDG</span>
+    </div>
+  </div>
+</footer>
+
+<!-- COOKIE NOTICE -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="wrap cookie-inner">
+    <div class="cookie-text">
+      <b>Diese Website verwendet Cookies</b>, unter anderem vom eingebetteten Buchungskalender (Calendly, USA). Mehr dazu in unserer <a href="/datenschutz" style="text-decoration:underline;">Datenschutzerklärung</a>.
+    </div>
+    <div class="cookie-actions">
+      <button class="btn btn-primary" onclick="hideBanner()">Verstanden</button>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-cta" id="mcta"><a href="#buchen" class="btn btn-primary">Termin buchen</a></div>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+// ---------- cookie notice (informational only, Calendly loads regardless) ----------
+const CONSENT_KEY = 'dua_cookie_notice_seen';
+function hideBanner(){
+  document.getElementById('cookieBanner').classList.remove('show');
+  try{ localStorage.setItem(CONSENT_KEY, '1'); }catch(e){}
+}
+function showBanner(){ document.getElementById('cookieBanner').classList.add('show'); }
+(function initNotice(){
+  let seen=null;
+  try{ seen=localStorage.getItem(CONSENT_KEY); }catch(e){}
+  if(!seen) showBanner();
+})();
+
+// sticky header + mobile cta
+const hdr=document.getElementById('hdr'), mcta=document.getElementById('mcta');
+addEventListener('scroll',()=>{
+  const y=scrollY;
+  hdr.classList.toggle('stuck', y>40);
+  mcta.classList.toggle('show', y>700);
+},{passive:true});
+
+// reveal on scroll
+const io=new IntersectionObserver((es)=>{
+  es.forEach((e,i)=>{ if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('in'), (i%6)*70); io.unobserve(e.target);} });
+},{threshold:.15, rootMargin:'0px 0px -60px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+// count-up stats
+function countUp(el){
+  const target=parseFloat(el.dataset.count),
+        dec=parseInt(el.dataset.decimals||0),
+        pre=el.dataset.prefix||'', suf=el.dataset.suffix||'';
+  const dur=1500, t0=performance.now();
+  function frame(t){
+    const p=Math.min((t-t0)/dur,1), e=1-Math.pow(1-p,3);
+    el.textContent=pre+(target*e).toFixed(dec).replace('.',',')+suf;
+    if(p<1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+const cio=new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){ countUp(e.target); cio.unobserve(e.target);} });
+},{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+// testimonial slider
+const slides=[...document.querySelectorAll('.slide')], dots=document.getElementById('dots');
+let cur=0, timer;
+slides.forEach((_,i)=>{
+  const b=document.createElement('button');
+  b.setAttribute('aria-label','Stimme '+(i+1));
+  if(i===0) b.classList.add('on');
+  b.onclick=()=>{go(i); reset();};
+  dots.appendChild(b);
+});
+function go(i){
+  slides[cur].classList.remove('on'); dots.children[cur].classList.remove('on');
+  cur=i;
+  slides[cur].classList.add('on'); dots.children[cur].classList.add('on');
+}
+function reset(){ clearInterval(timer); timer=setInterval(()=>go((cur+1)%slides.length), 6500); }
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches) reset();
+</script>
+</body>
+</html>
