@@ -559,6 +559,19 @@ footer a:hover{color:var(--cream);}
 
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <script>
+// Nach erfolgreicher Terminwahl bei Calendly automatisch zur Zahlung weiterleiten.
+// Funktioniert unabhängig vom Calendly-Tarif, da es das öffentliche
+// "calendly.event_scheduled"-Ereignis des eingebetteten Widgets nutzt.
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/test_cNi8wO4L6ebG8stcnW63K00"; // TODO: nach Live-Umstellung durch den Live-Link ersetzen
+window.addEventListener('message', function(e){
+  if (e.data && e.data.event && e.data.event.indexOf('calendly.') === 0) {
+    if (e.data.event === 'calendly.event_scheduled') {
+      window.location.href = STRIPE_PAYMENT_LINK;
+    }
+  }
+});
+</script>
+<script>
 // ---------- cookie notice (informational only, Calendly loads regardless) ----------
 const CONSENT_KEY = 'dua_cookie_notice_seen';
 function hideBanner(){
