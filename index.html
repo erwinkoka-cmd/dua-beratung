@@ -241,6 +241,9 @@ section{position:relative;z-index:2;}
 .scarce{display:flex;align-items:center;gap:9px;font-size:14.5px;color:var(--ink);font-weight:500;}
 .scarce .pulse{background:var(--signal);}
 .guarantee{font-size:14px;color:var(--ink-mute);}
+.pay-note{padding:14px 28px;border-bottom:1px solid var(--edge-dark);background:#FFF6E5;font-size:14.5px;color:var(--ink);}
+.pay-note a{color:var(--signal);font-weight:700;}
+.pay-note span{color:var(--ink-mute);font-size:13.5px;}
 .calendly-inline-widget{min-width:300px;height:720px;}
 @media(max-width:620px){.calendly-inline-widget{height:1000px;}}
 
@@ -334,7 +337,7 @@ footer a:hover{color:var(--cream);}
 <!-- announcement -->
 <div class="announce" aria-live="off">
   <div class="announce-track">
-    <span>Erstes Kennenlernen: 15 Minuten kostenlos</span>
+    <span>15 Minuten Beratung für 20 € · Pagesa paraprakisht</span>
     <span>Beratung auf Shqip und Deutsch</span>
     <span>Antwort innerhalb von 24 Stunden</span>
   </div>
@@ -354,7 +357,7 @@ footer a:hover{color:var(--cream);}
       <a href="#ablauf" class="nl">Ablauf</a>
       <a href="#stimmen" class="nl">Stimmen</a>
       <a href="#fragen" class="nl">Fragen</a>
-      <a href="#buchen" class="btn btn-primary">Termin buchen</a>
+      <a href="/zahlung" class="btn btn-primary">Termin buchen</a>
     </nav>
   </div>
 </header>
@@ -376,7 +379,7 @@ footer a:hover{color:var(--cream);}
     </div>
     <p class="lead">Finanzen, Formulare, Belege — vieles scheitert selten an Ihnen, sondern an der Sprache und an fehlenden Informationen. Wir erklären Ihnen Schritt für Schritt, worauf es ankommt, auf Shqip oder Deutsch — von Finanztipps für den Alltag bis zur Buchhaltungshilfe.</p>
     <div class="hero-ctas">
-      <a href="#buchen" class="btn btn-primary">Termin buchen</a>
+      <a href="/zahlung" class="btn btn-primary">Termin buchen</a>
       <a href="#themen" class="btn btn-outline">Womit wir helfen</a>
     </div>
     <div class="reassure">
@@ -500,6 +503,7 @@ footer a:hover{color:var(--cream);}
         <span class="scarce"><span class="pulse"></span>Wir nehmen pro Woche nur eine begrenzte Zahl an Beratungen an</span>
         <span class="guarantee">Termin kostenlos verschiebbar bis 24 Stunden vorher</span>
       </div>
+      <div class="pay-note"><b>Bitte zuerst bezahlen:</b> 20 € per PayPal an deklarimtaksash@gmail.com. Ihr Termin ist erst gültig, wenn die Zahlung eingegangen ist. <a href="/zahlung">Zur Zahlungsseite</a><br><span>Ju lutemi paguani më parë: 20 € përmes PayPal. Takimi është i vlefshëm vetëm pasi pagesa të jetë pranuar.</span></div>
       <div class="calendly-inline-widget" data-url="https://calendly.com/deklarimtaksash/30min?hide_gdpr_banner=1&primary_color=E03131&background_color=ffffff&text_color=241A1D"></div>
     </div>
   </div>
@@ -512,7 +516,7 @@ footer a:hover{color:var(--cream);}
     <div class="faq">
       <details class="rv"><summary>Sprechen Sie Albanisch?</summary><p>Ja. Sie können den Termin komplett auf Shqip führen — sagen Sie es einfach bei der Buchung dazu. Auf Wunsch sprechen wir Deutsch oder wechseln zwischen beiden Sprachen.</p></details>
       <details class="rv"><summary>Ist das eine Steuerberatung?</summary><p>Nein. Wir sind keine Steuerberater und erstellen oder reichen keine Steuererklärungen ein — das bleibt Steuerberatern und Lohnsteuerhilfevereinen vorbehalten. Wir geben Finanztipps, helfen beim Sortieren von Belegen und beim Ausfüllen von Formularen. Bei Fällen, die eine Steuerberatung erfordern, empfehlen wir Ihnen eine Steuerberaterin, einen Steuerberater oder einen Lohnsteuerhilfeverein.</p></details>
-      <details class="rv"><summary>Was kostet die Beratung?</summary><p>Den Preis sehen Sie direkt im Kalender bei der Auswahl des Termins. Das erste Kennenlernen von 15 Minuten ist kostenlos, damit Sie einschätzen können, ob wir die Richtigen für Sie sind.</p></details>
+      <details class="rv"><summary>Was kostet die Beratung?</summary><p>Die 15-minütige Beratung kostet 20 €. Sie zahlen vorab per PayPal an deklarimtaksash@gmail.com und wählen danach Ihren Termin. Ihr Termin ist gültig, sobald die Zahlung bei uns eingegangen ist. Alle Details finden Sie auf der <a href="/zahlung" style="color:var(--signal);">Zahlungsseite</a>. <em>Këshillimi 15-minutësh kushton 20 €. Paguani paraprakisht përmes PayPal dhe pastaj zgjidhni terminin.</em></p></details>
       <details class="rv"><summary>Was passiert mit meinen Daten?</summary><p>Ihre Angaben werden ausschließlich für die Beratung genutzt und nicht an Dritte weitergegeben. Nichts von dem, was Sie uns erzählen, geht an Behörden oder Arbeitgeber.</p></details>
       <details class="rv"><summary>Kann ich einen Termin verschieben?</summary><p>Ja, bis 24 Stunden vorher kostenlos. Den Link zum Verschieben finden Sie in Ihrer Bestätigungs-E-Mail.</p></details>
       <details class="rv"><summary>Findet die Beratung online oder vor Ort statt?</summary><p>In der Regel per Video oder Telefon, damit Sie nicht anreisen müssen. Vor-Ort-Termine sind nach Absprache möglich.</p></details>
@@ -526,7 +530,7 @@ footer a:hover{color:var(--cream);}
     <div class="final rv">
       <h2><span class="sq">Nuk keni pse ta bëni këtë vetëm</span>Sie müssen das nicht allein regeln.</h2>
       <p>Ein Gespräch reicht oft, damit aus einem Stapel Papier ein klarer Plan wird.</p>
-      <a href="#buchen" class="btn btn-primary">Jetzt Termin buchen</a>
+      <a href="/zahlung" class="btn btn-primary">Jetzt Termin buchen</a>
     </div>
   </div>
 </section>
@@ -569,7 +573,7 @@ footer a:hover{color:var(--cream);}
   </div>
 </div>
 
-<div class="mobile-cta" id="mcta"><a href="#buchen" class="btn btn-primary">Termin buchen</a></div>
+<div class="mobile-cta" id="mcta"><a href="/zahlung" class="btn btn-primary">Termin buchen</a></div>
 
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <script>
